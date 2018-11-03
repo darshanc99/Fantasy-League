@@ -99,8 +99,8 @@ public class DisplayEmpData extends JFrame implements ActionListener {
 //String textvalue = textbox.getText();
         String name = "";
         String teamname = "";
-        String goo = "";
-        String yellowtatti = "";
+        String goal = "";
+        String yellowcard = "";
 
         try {
             pst = con.prepareStatement("select * from league where player_name='" + from + "'");
@@ -109,9 +109,9 @@ public class DisplayEmpData extends JFrame implements ActionListener {
             if (rs.next()) {
                 name = rs.getString("player_name");
                 teamname = rs.getString("team");
-                goo = rs.getString("Goal");
-                yellowtatti = rs.getString("Yellow Card");
-                model.addRow(new Object[]{name, teamname, goo, yellowtatti});
+                goal = rs.getString("Goal");
+                yellowcard = rs.getString("Yellow Card");
+                model.addRow(new Object[]{name, teamname, goal, yellowcard});
                 i++;
             }
             if (i < 1) {
