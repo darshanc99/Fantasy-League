@@ -188,7 +188,6 @@ public class ButtonImageExample
         b1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.setVisible(false);
-                //creategui2();
                 DisplayPlayerData();
             }
 
@@ -330,7 +329,7 @@ public class ButtonImageExample
         String from=null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");  // (1)
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/league ","root@localhost ", "chowder09");  // (2)
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/league ","root ", "");  // (2)
             st = con.createStatement();
             rs = st.executeQuery("select uname from emp");
             Vector v = new Vector();
@@ -388,6 +387,12 @@ public class ButtonImageExample
 
         basePanel.add(topPanel, BorderLayout.CENTER);
         basePanel.add(bottomPanel, BorderLayout.PAGE_END);
+
+        menuButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent arg0){
+
+            }
+        });
 
         for(int z=0;z<20;z++)
         {
