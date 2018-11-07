@@ -1,0 +1,823 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Vector;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.imageio.ImageIO;
+
+public class ButtonImageExample
+{
+    private ImageIcon imageForLabel;
+    private JLabel imageLabel;
+
+    public static JTextField userField,label;
+    private JPasswordField passField;
+    private JButton loginButton;
+    public static JFrame frame1=new JFrame("Frame1");
+    public static JFrame frame2=new JFrame("Frame2");
+    public static JFrame frame3=new JFrame("Frame3");
+    public static JFrame frame = new JFrame("LOG-IN");
+    public static JPanel p,p1,p2;
+    public static JButton b1,b2,b3,b6,addplayer,removeplayer,b7,quitgame,menuButton,exchangeButton;
+    public static JLabel l1,l2,l3,l7,l8,l9,background,remove,add;
+	public static JTextField label1;
+    static int pid,bid,id1,id2,id3,id4,id5;
+    public static JPanel basePanel;
+    public static void main(String... args)
+    {
+        SwingUtilities.invokeLater(new Runnable()
+        {
+            public void run()
+            {
+                new ButtonImageExample().displayGUI();
+            }
+        });
+    }
+
+    private void displayGUI()
+    {
+        frame2 = new JFrame("LOG-IN");
+        frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JPanel contentPane = new JPanel();
+        contentPane.setLayout(new BorderLayout(5, 5));
+        try
+        {
+            //image = new ImageIcon(ImageIO.read(
+            // new URL("http://i.imgur.com/jwyrvXC.gif")));
+            imageForLabel = new ImageIcon(ImageIO.read(new URL("https://sport360.com/wp-content/uploads/2017/08/04-08-FPL-2-e1504854530482.jpg")));
+        }
+        catch(MalformedURLException mue)
+        {
+            mue.printStackTrace();
+        }
+        catch(IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
+
+        imageLabel = new JLabel(imageForLabel);
+        JPanel basePanel = new JPanel();
+        // setOpaque(false) is used to make the JPanel translucent/transparent.
+        basePanel.setOpaque(false);
+        basePanel.setLayout(new BorderLayout(5, 5));
+        JPanel topPanel = new JPanel();
+        topPanel.setOpaque(false);
+        topPanel.setLayout(new GridLayout(2, 2, 5, 5));
+        JLabel userLabel = new JLabel("USERNAME : ", JLabel.CENTER);
+        userLabel.setForeground(Color.WHITE);
+        userField = new JTextField(10);
+        JLabel passLabel = new JLabel("PASSWORD : ", JLabel.CENTER);
+        passLabel.setForeground(Color.WHITE);
+        passField = new JPasswordField(10);
+
+        topPanel.add(userLabel);
+        topPanel.add(userField);
+        topPanel.add(passLabel);
+        topPanel.add(passField);
+
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setOpaque(false);
+        loginButton = new JButton("Click to LOGIN");
+        //loginButton.setIcon(image);
+        loginButton.setHorizontalTextPosition(AbstractButton.CENTER);
+        loginButton.setVerticalTextPosition(AbstractButton.BOTTOM);
+        bottomPanel.add(loginButton);
+
+        basePanel.add(topPanel, BorderLayout.CENTER);
+        basePanel.add(bottomPanel, BorderLayout.PAGE_END);
+
+        imageLabel.setLayout(new GridBagLayout());
+        imageLabel.add(basePanel);
+
+        contentPane.add(imageLabel, BorderLayout.CENTER);
+
+        frame2.setContentPane(contentPane);
+        frame2.pack();
+        frame2.setLocationByPlatform(true);
+        frame2.setVisible(true);
+
+        loginButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent arg0){
+                String uname=userField.getText();
+                String psd=passField.getText();
+                if(uname.equals("name") && psd.equals("password"))
+                {
+                    frame2.setVisible(false);
+                    creategui();
+                }
+                else{
+                    JOptionPane.showMessageDialog(imageLabel,"Wrong Username or Password!","ERROR",JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+    }
+    private void creategui() {
+        frame = new JFrame("MAIN MENU");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JPanel contentPane = new JPanel();
+        contentPane.setLayout(new BorderLayout(5, 5));
+        try {
+            //image = new ImageIcon(ImageIO.read(
+            //new URL("http://i.imgur.com/jwyrvXC.gif")));
+            imageForLabel = new ImageIcon(ImageIO.read(new URL("http://spojrzeniezkanapy.pl/wp-content/uploads/2017/07/fantasy3.png")));
+        }
+        catch(MalformedURLException mue)
+        {
+            mue.printStackTrace();
+        }
+        catch(IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
+
+        imageLabel = new JLabel(imageForLabel);
+        JPanel basePanel = new JPanel();
+        // setOpaque(false) is used to make the JPanel translucent/transparent.
+        basePanel.setOpaque(false);
+        basePanel.setLayout(new BorderLayout(5, 5));
+        JPanel topPanel = new JPanel();
+        topPanel.setOpaque(false);
+        topPanel.setLayout(new GridLayout(2, 2, 5, 5));
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setOpaque(false);
+        b1 = new JButton("Transfer Season");
+        //loginButton.setIcon(image);
+        b1.setHorizontalTextPosition(AbstractButton.CENTER);
+        b1.setVerticalTextPosition(AbstractButton.BOTTOM);
+        b2 = new JButton("User Statistics");
+        b2.setHorizontalTextPosition(AbstractButton.CENTER);
+        b2.setVerticalTextPosition(AbstractButton.BOTTOM);
+        b3 = new JButton("LOG-OUT");
+        b3.setHorizontalTextPosition(AbstractButton.CENTER);
+        b3.setVerticalTextPosition(AbstractButton.BOTTOM);
+        quitgame = new JButton("Quit Game");
+        quitgame.setHorizontalTextPosition(AbstractButton.CENTER);
+        quitgame.setVerticalTextPosition(AbstractButton.BOTTOM);
+
+
+        bottomPanel.add(b1);
+        bottomPanel.add(b2);
+        bottomPanel.add(b3);
+        bottomPanel.add(quitgame);
+
+        basePanel.add(topPanel, BorderLayout.CENTER);
+        basePanel.add(bottomPanel, BorderLayout.PAGE_END);
+
+        imageLabel.setLayout(new GridBagLayout());
+        imageLabel.add(basePanel);
+
+        contentPane.add(imageLabel, BorderLayout.CENTER);
+
+        frame.setContentPane(contentPane);
+        frame.pack();
+        frame.setLocationByPlatform(true);
+        frame.setVisible(true);
+
+
+        b1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                DisplayPlayerData();
+            }
+
+        });
+
+        b2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                frame1.setVisible(false);
+                creategui1();
+            }
+
+        });
+
+        b3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                close();
+            }
+            private void close() {
+                // TODO Auto-generated method stub
+                frame.setVisible(false);
+                frame2.setVisible(true);
+            }
+        });
+
+        quitgame.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                tclose();
+            }
+
+            private void tclose() {
+                // TODO Auto-generated method stub
+                frame.setVisible(false);
+                System.exit(0);
+            }
+        });
+    }
+    public static void creategui1() {
+        frame3=new JFrame("User stats");
+        frame3.setSize(1280, 720);
+        frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame3.setVisible(true);
+        background=new JLabel(new ImageIcon("C:/Users/bhard/Desktop/template.jpg"));
+        background.setVerticalAlignment(JLabel.BOTTOM);
+        background.setHorizontalAlignment(JLabel.LEFT);
+        background.setLayout(null);
+        frame3.add(background);
+
+        p1=new JPanel(new BorderLayout(8,8));
+        p1.setOpaque(false);
+        p1.setLayout(new BorderLayout());
+        background.setLayout(new FlowLayout());
+        b6=new JButton("Main Menu");
+        b6.setBounds(450,200,120,40);
+        //l6=new JLabel("");
+        p1.add(b6,BorderLayout.SOUTH);
+        background.add(p1,BorderLayout.SOUTH);
+        //background.add(l6);
+
+        //frame2.getContentPane().add(p1);
+        frame3.pack();
+        //frame2.setLocationRelativeTo(null);
+        b6.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                close();
+            }
+            private void close() {
+                // TODO Auto-generanted method stub
+                frame3.setVisible(false);
+                frame.setVisible(true);
+            }
+        });
+    }
+    /*public static void creategui2() {
+        frame1=new JFrame("Data");
+        frame1.setSize(800,800);
+        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame1.setVisible(true);
+        p2=new JPanel(new BorderLayout(8,8));
+        p2.setLayout(null);
+        addplayer=new JButton("Add/Remove");
+        addplayer.setBounds(400,670,200,20);
+        l7=new JLabel("Add/Remove player by ID:");
+        l7.setBounds(100,645,300,70);
+        p2.add(addplayer,BorderLayout.SOUTH);
+        p2.add(l7);
+        frame1.getContentPane().add(p2);
+        frame1.setLocationRelativeTo(null);
+        JTextField idText = new JTextField(20);
+        idText.setBounds(250,670,150,20);
+        p2.add(idText);
+        b7=new JButton("Main Menu");
+        b7.setBounds(250,700,120,40);
+        l8=new JLabel("");
+        p2.add(b7,BorderLayout.SOUTH);
+        p2.add(l8);
+        addplayer.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                pid = Integer.parseInt(idText.getText());
+                if (pid > 0 && pid <= 20) {
+                    JOptionPane.showMessageDialog(p2, "DONE", "UPDATE", JOptionPane.PLAIN_MESSAGE);
+                        //JOptionPane.showMessageDialog(p, "", "UPDATE", JOptionPane.PLAIN_MESSAGE);
+                        //Please check and throw error if the player to be removed is not present in the squad.
+                        /*Enter Your code here. Use pid for Player ID*/
+                /*}
+                else{
+                    JOptionPane.showMessageDialog(p2,"WRONG PLAYER ID!!","ERROR",JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        b7.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+                {
+                    close();
+                }
+                private void close() {
+                    // TODO Auto-generated method stub
+                    frame1.setVisible(false);
+                    frame.setVisible(true);
+            }
+        });
+    }*/
+    public static void DisplayPlayerData()
+    {
+        Connection con=null;
+        ResultSet rs,rs1,rs2;
+        Statement st,st1;
+        PreparedStatement pst;
+        String ids;
+        JTable table,usertable;
+        String[] columnNames = {"ID","NAME","TEAM","PRICE","GOAL","ASSIST","YELLOW CARD","RED CARD","SAVES","TOTAL"};
+        
+
+        String from=null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");  // (1)
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/league ","root", "");  // (2)
+            st = con.createStatement();
+            rs = st.executeQuery("select uname from emp");
+            Vector v = new Vector();
+            while (rs.next()) {
+                ids = rs.getString(1);
+                v.add(ids);
+            }
+            st.close();
+            rs.close();
+        } catch (Exception e) {
+        	System.out.println("Connection unestablished");
+        }
+        frame1 = new JFrame("Player Data");
+        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame1.setLayout(new BorderLayout());
+//TableModel tm = new TableModel();
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(columnNames);
+
+        DefaultTableModel model1 = new DefaultTableModel();
+        model1.setColumnIdentifiers(columnNames);
+//DefaultTableModel model = new DefaultTableModel(tm.getData1(), tm.getColumnNames());
+//table = new JTable(model);
+        table = new JTable();
+        table.setModel(model);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        table.setFillsViewportHeight(true);
+        JScrollPane scroll = new JScrollPane(table);
+        scroll.setHorizontalScrollBarPolicy(
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scroll.setVerticalScrollBarPolicy(
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        
+        usertable=new JTable();
+        usertable.setModel(model1);
+        usertable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        usertable.setFillsViewportHeight(true);
+        JScrollPane scroll1=new JScrollPane(usertable);
+        scroll1.setHorizontalScrollBarPolicy(
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scroll1.setVerticalScrollBarPolicy(
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        
+        basePanel = new JPanel();
+        // setOpaque(false) is used to make the JPanel translucent/transparent.
+        basePanel.setOpaque(false);
+        basePanel.setLayout(new BorderLayout(5, 5));
+        JPanel topPanel = new JPanel();
+        topPanel.setLayout(new BorderLayout(800,100));
+        topPanel.setOpaque(false);
+        //topPanel.setLayout(new GridLayout(1, 1, 5, 5));
+
+        topPanel.add(scroll);
+
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setLayout(new GridLayout(1,3,5,5));
+        label = new JTextField(10);
+        bottomPanel.setOpaque(false);
+        
+        JPanel midPanel=new JPanel();
+        midPanel.setLayout(new GridLayout(1,3,5,5));
+        midPanel.setOpaque(false);
+        midPanel.add(scroll1);
+        
+        menuButton = new JButton("Main Menu");
+        menuButton.setHorizontalTextPosition(AbstractButton.CENTER);
+        menuButton.setVerticalTextPosition(AbstractButton.BOTTOM);
+        
+
+        menuButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent arg0){
+                frame1.setVisible(false);
+                frame.setVisible(true);
+            }
+        });
+        exchangeButton=new JButton("Exchange");
+        exchangeButton.setHorizontalTextPosition(AbstractButton.CENTER);
+        exchangeButton.setVerticalTextPosition(AbstractButton.BOTTOM);
+        label1=new JTextField(10);
+        bottomPanel.add(label);
+        bottomPanel.add(exchangeButton);
+        bottomPanel.add(label1);
+        bottomPanel.add(menuButton);
+
+        basePanel.add(topPanel, BorderLayout.NORTH);
+        basePanel.add(bottomPanel, BorderLayout.PAGE_END);
+        basePanel.add(midPanel,BorderLayout.CENTER);
+        for(int z=0;z<5;z++)
+        {
+            if(z==0)
+            {
+                from=("Sergio Aguero");
+            }
+            if(z==1)
+            {
+                from=("Harry Kane");
+            }
+            if(z==2)
+            {
+                from=("A. Mitrovic");
+            }
+            if(z==3)
+            {
+                from=("Glenn Murray");
+            }
+            if(z==4)
+            {
+                from=("Oliver Giroud");
+            }
+            id1=1;
+            id2=2;
+            id3=3;
+            id4=4;
+            id5=5;
+//String textvalue = textbox.getText();
+            String name = "";
+            String teamname = "";
+            String goal = "";
+            String yellowcard = "";
+            String id="";
+            String price="";
+            String assist="";
+            String redcard="";
+            String saves="";
+            String total="";
+
+            try {
+                pst = con.prepareStatement("select * from league where player_name='" + from + "'");
+                rs1 = pst.executeQuery();
+                int i = 0;
+                if (rs1.next()) {
+                    name = rs1.getString("player_name");
+                    teamname = rs1.getString("team");
+                    goal = rs1.getString("Goal");
+                    yellowcard = rs1.getString("Yellow_Card");
+                    id=rs1.getString("player_id");
+                    price=rs1.getString("price");
+                    assist=rs1.getString("Assist");
+                    redcard=rs1.getString("Red_Card");
+                    saves=rs1.getString("Saves");
+                    total=rs1.getString("Total");
+
+                    model1.addRow(new Object[]{id,name, teamname,price,goal,assist, yellowcard,redcard,saves,total});
+                    i++;
+                }
+                if (i < 1) {
+                    JOptionPane.showMessageDialog(null, "No Record Found", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                if (i == 1) {
+                    System.out.println(i + " Record Found");
+                } else {
+                    System.out.println(i + " Records Found");
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            frame1.add(basePanel);
+            frame1.setVisible(true);
+            frame1.setSize(1000,1000);
+        }
+        for(int z=0;z<20;z++)
+        {
+            if(z==0)
+            {
+                from=("Sergio Aguero");
+            }
+            if(z==1)
+            {
+                from=("Harry Kane");
+            }
+            if(z==2)
+            {
+                from=("A. Mitrovic");
+            }
+            if(z==3)
+            {
+                from=("Glenn Murray");
+            }
+            if(z==4)
+            {
+                from=("Oliver Giroud");
+            }
+            if(z==5)
+            {
+                from=("Jose Holebas");
+            }
+            if(z==6)
+            {
+                from=("Benjamin Mendy");
+            }
+            if(z==7)
+            {
+                from=("Luciano Vietto");
+            }
+            if(z==8)
+            {
+                from=("Romelu Lukaku");
+            }
+            if(z==9)
+            {
+                from=("Callum Wilson");
+            }
+            if(z==10)
+            {
+                from=("Aaron Wan-Bissaka");
+            }
+            if(z==11)
+            {
+                from=("Mohamed Diame");
+            }
+            if(z==12)
+            {
+                from=("Ricardo Pereira");
+            }
+            if(z==13)
+            {
+                from=("Will Hughes");
+            }
+            if(z==14)
+            {
+                from=("Wilfred Ndidi");
+            }
+            if(z==15)
+            {
+                from=("Joe Hart");
+            }
+            if(z==16)
+            {
+                from=("Neil Etheridge");
+            }
+            if(z==17)
+            {
+                from=("Alex McCarthy");
+            }
+            if(z==18)
+            {
+                from=("Mat Ryan");
+            }
+            if(z==19)
+            {
+                from=("Rui Patricio");
+            }
+
+//String textvalue = textbox.getText();
+            String name = "";
+            String teamname = "";
+            String goal = "";
+            String yellowcard = "";
+            String id="";
+            String price="";
+            String assist="";
+            String redcard="";
+            String saves="";
+            String total="";
+
+            try {
+                pst = con.prepareStatement("select * from league where player_name='" + from + "'");
+                rs = pst.executeQuery();
+                int i = 0;
+                if (rs.next()) {
+                    name = rs.getString("player_name");
+                    teamname = rs.getString("team");
+                    goal = rs.getString("Goal");
+                    yellowcard = rs.getString("Yellow_Card");
+                    id=rs.getString("player_id");
+                    price=rs.getString("price");
+                    assist=rs.getString("Assist");
+                    redcard=rs.getString("Red_Card");
+                    saves=rs.getString("Saves");
+                    total=rs.getString("Total");
+
+                    model.addRow(new Object[]{id,name, teamname,price,goal,assist, yellowcard,redcard,saves,total});
+                    i++;
+                }
+                if (i < 1) {
+                    JOptionPane.showMessageDialog(null, "No Record Found", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                if (i == 1) {
+                    System.out.println(i + " Record Found");
+                } else {
+                    System.out.println(i + " Records Found");
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            frame1.add(basePanel);
+            frame1.setVisible(true);
+            frame1.setSize(1000,1000);
+        }
+        exchangeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	pid = Integer.parseInt(label.getText());
+                bid=Integer.parseInt(label1.getText());
+                if (pid > 0 && pid <= 20 && bid>0 && bid<=20) {
+                    JOptionPane.showMessageDialog(p2, "DONE", "UPDATE", JOptionPane.PLAIN_MESSAGE);
+                    if(pid==id1)
+                    {
+                    	id1=bid;
+                    }
+                    else if(pid==id2)
+                    {
+                    	id2=bid;
+                    }
+                    else if(pid==id3)
+                    {
+                    	id3=bid;
+                    }
+                    else if(pid==id4)
+                    {
+                    	id4=bid;
+                    }
+                    else
+                    {
+                    	id5=bid;
+                    }
+                    model1.removeRow(model1.getRowCount() - 1);
+                    model1.removeRow(model1.getRowCount() - 1);
+                    model1.removeRow(model1.getRowCount() - 1);
+                    model1.removeRow(model1.getRowCount() - 1);
+                    model1.removeRow(model1.getRowCount() - 1);
+                    
+                    hello();
+                        //JOptionPane.showMessageDialog(p, "", "UPDATE", JOptionPane.PLAIN_MESSAGE);
+                        //Please check and throw error if the player to be removed is not present in the squad.
+                        /*Enter Your code here. Use pid for Player ID*/
+                }
+                else if(bid>20 || pid>20){
+                    JOptionPane.showMessageDialog(p2,"WRONG PLAYER ID!!","ERROR",JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+    }
+    public static void hello()
+    {
+    	System.out.print("Hello");
+    	Connection con=null;
+        ResultSet rs,rs1,rs2;
+        Statement st,st1;
+        PreparedStatement pst;
+        String ids;
+        JTable usertable;
+        String[] columnNames = {"ID","NAME","TEAM","PRICE","GOAL","ASSIST","YELLOW CARD","RED CARD","SAVES","TOTAL"};
+        String from=null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");  // (1)
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/league ","root", "");  // (2)
+            st = con.createStatement();
+            rs = st.executeQuery("select uname from emp");
+            Vector v = new Vector();
+            while (rs.next()) {
+                ids = rs.getString(1);
+                v.add(ids);
+            }
+            st.close();
+            rs.close();
+        } catch (Exception e) {
+        	System.out.println("Connection unestablished");
+        }
+        
+    	DefaultTableModel model2 = new DefaultTableModel();
+        model2.setColumnIdentifiers(columnNames);
+           for(int z=0;z<2;z++)
+           {
+            if(id1==1 || id2==1 || id3==1 ||id4==1 || id5==1)
+            {
+                from=("Sergio Aguero");
+            }
+            if(id1==2 || id2==2 || id3==2 ||id4==2 || id5==2)
+            {
+                from=("Harry Kane");
+            }
+            if(id1==3 || id2==3 || id3==3 ||id4==3 || id5==3)
+            {
+                from=("A. Mitrovic");
+            }
+            if(id1==4 || id2==4 || id3==4 ||id4==4 || id5==4)
+            {
+                from=("Glenn Murray");
+            }
+            if(id1==5 || id2==5 || id3==5 ||id4==5 || id5==5)
+            {
+                from=("Oliver Giroud");
+            }
+            if(id1==6 || id2==6 || id3==6 ||id4==6 || id5==6)
+            {
+                from=("Jose Holebas");
+            }
+            if(id1==7 || id2==7 || id3==7 ||id4==7 || id5==7)
+            {
+                from=("Benjamin Mendy");
+            }
+            if(id1==8 || id2==8 || id3==8 ||id4==8 || id5==8)
+            {
+                from=("Luciano Vietto");
+            }
+            if(id1==9 || id2==9 || id3==9 ||id4==9 || id5==9)
+            {
+                from=("Romelu Lukaku");
+            }
+            if(id1==10 || id2==10 || id3==10 ||id4==10 || id5==10)
+            {
+                from=("Callum Wilson");
+            }
+            if(id1==11 || id2==11 || id3==11 ||id4==11 || id5==11)
+            {
+                from=("Aaron Wan-Bissaka");
+            }
+            if(id1==12 || id2==12 || id3==12 ||id4==12 || id5==12)
+            {
+                from=("Mohamed Diame");
+            }
+            if(id1==13 || id2==13 || id3==13 ||id4==13 || id5==13)
+            {
+                from=("Ricardo Pereira");
+            }
+            if(id1==14 || id2==14 || id3==14 ||id4==14 || id5==14)
+            {
+                from=("Will Hughes");
+            }
+            if(id1==15 || id2==15 || id3==0 ||id4==15 || id5==15)
+            {
+                from=("Wilfred Ndidi");
+            }
+            if(id1==16 || id2==16 || id3==16 ||id4==0 || id5==16)
+            {
+                from=("Joe Hart");
+            }
+            if(id1==17 || id2==17 || id3==17 ||id4==17 || id5==17)
+            {
+                from=("Neil Etheridge");
+            }
+            if(id1==18 || id2==18 || id3==18 ||id4==18 || id5==18)
+            {
+                from=("Alex McCarthy");
+            }
+            if(id1==19 || id2==19 || id3==19 ||id4==19 || id5==19)
+            {
+                from=("Mat Ryan");
+            }
+            if(id1==20 || id2==20 || id3==20 ||id4==20 || id5==20)
+            {
+                from=("Rui Patricio");
+            }
+            String name = "";
+            String teamname = "";
+            String goal = "";
+            String yellowcard = "";
+            String id="";
+            String price="";
+            String assist="";
+            String redcard="";
+            String saves="";
+            String total="";
+            try {
+                pst = con.prepareStatement("select * from league where player_name='" + from + "'");
+                rs = pst.executeQuery();
+                int i = 0;
+                if (rs.next()) {
+                    name = rs.getString("player_name");
+                    teamname = rs.getString("team");
+                    goal = rs.getString("Goal");
+                    yellowcard = rs.getString("Yellow_Card");
+                    id=rs.getString("player_id");
+                    price=rs.getString("price");
+                    assist=rs.getString("Assist");
+                    redcard=rs.getString("Red_Card");
+                    saves=rs.getString("Saves");
+                    total=rs.getString("Total");
+
+                    model2.addRow(new Object[]{id,name, teamname,price,goal,assist, yellowcard,redcard,saves,total});
+                    i++;
+                }
+                if (i < 1) {
+                    JOptionPane.showMessageDialog(null, "No Record Found", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                if (i == 1) {
+                    System.out.println(i + " Record Found");
+                } else {
+                    System.out.println(i + " Records Found");
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+            frame1.add(basePanel);
+            frame1.setVisible(true);
+            frame1.setSize(1000,1000);
+           }
+           
+
+        }
+}
