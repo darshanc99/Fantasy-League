@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel; //To use JTables
 import javax.imageio.ImageIO;               //To accept images
 import javax.sound.sampled.*;               //To accept sound
 
-public class Game_user             //This is our main Parent class
+public class ButtonImageExample             //This is our main Parent class
 {
     //Declaring all the variables
     private static Connection Con2;         
@@ -31,7 +31,7 @@ public class Game_user             //This is our main Parent class
     public static JFrame frame3=new JFrame("Frame3");   //User-Stats Frame
     public static JFrame frame = new JFrame("LOG-IN");  //Main-Menu Frame
     public static JFrame musicframe=new JFrame("MUSIC");//Music Frame
-    public static JPanel p,p1,p2;
+    public static JPanel p2;
     public static JButton b1,b2,b3,b6,quitgame,menuButton,exchangeButton;
     public static JTextField label1;
     static int pid,bid;
@@ -39,7 +39,6 @@ public class Game_user             //This is our main Parent class
     public static Connection Con;
     public static Statement st;
     public static ResultSet rs;
-    static boolean playCompleted;
     
     public static void main(String[] args)
     {
@@ -47,8 +46,8 @@ public class Game_user             //This is our main Parent class
         {
             public void run()   
             {
-                new Game_user().displayGUI();	//Creating an object for the main class and calling the method to create Login frame
-                music();						//Calling the audio frame to play audio onclick of login button 
+                new ButtonImageExample().displayGUI();   //Creating an object for the main class and calling the method to create Login frame
+                music();                        //Calling the audio frame to play audio onclick of login button 
             }
         });
     }
@@ -536,7 +535,7 @@ public class Game_user             //This is our main Parent class
                     i++;
                 }
                 if (i < 1) {
-                    JOptionPane.showMessageDialog(null, "No Record Found", "Error", JOptionPane.ERROR_MESSAGE);
+                
                 }
                 if (i == 1) {
                     System.out.println(i + " Record Found");
@@ -592,7 +591,7 @@ public class Game_user             //This is our main Parent class
                     i++;
                 }
                 if (i < 1) {
-                    JOptionPane.showMessageDialog(null, "No Record Found", "Error", JOptionPane.ERROR_MESSAGE);
+                
                 }
                 if (i == 1) {
                     System.out.println(i + " Record Found");
