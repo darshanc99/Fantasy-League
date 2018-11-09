@@ -32,10 +32,9 @@ public class Game_user             //This is our main Parent class
     public static JFrame frame = new JFrame("LOG-IN");  //Main-Menu Frame
     public static JFrame musicframe=new JFrame("MUSIC");//Music Frame
     public static JPanel p,p1,p2;
-    public static JButton b1,b2,b3,b6,addplayer,removeplayer,b7,quitgame,menuButton,exchangeButton;
-    public static JLabel l1,l2,l3,l7,l8,l9,background,remove,add;
+    public static JButton b1,b2,b3,b6,quitgame,menuButton,exchangeButton;
     public static JTextField label1;
-    static int pid,bid,id1,id2,id3,id4,id5;
+    static int pid,bid;
     public static JPanel basePanel;
     public static Connection Con;
     public static Statement st;
@@ -48,7 +47,8 @@ public class Game_user             //This is our main Parent class
         {
             public void run()   
             {
-                new Game_user().displayGUI();  //Creating an object for the main class and calling the method to create Login frame
+                new Game_user().displayGUI();	//Creating an object for the main class and calling the method to create Login frame
+                music();						//Calling the audio frame to play audio onclick of login button 
             }
         });
     }
@@ -121,7 +121,6 @@ public class Game_user             //This is our main Parent class
                 {
                     frame2.setVisible(false);
                     creategui();        //Calling the method to create the Main-menu frame
-                    music();           //Calling the audio frame to play audio onclick of login button
                 }
                 else{
                     JOptionPane.showMessageDialog(imageLabel,"Wrong Username or Password!","ERROR",JOptionPane.ERROR_MESSAGE);
@@ -140,7 +139,7 @@ public class Game_user             //This is our main Parent class
         play(audioFilePath);       //Calling the method to play the audio
     }
 
-    public static void play(String audioFilePath)   //The methd that plays your song
+    public static void play(String audioFilePath)   //The method that plays your song
     {
         File audioFile = new File(audioFilePath);  //Creates the file
          
@@ -404,7 +403,7 @@ public class Game_user             //This is our main Parent class
             st.close();
             rs.close();
         } catch (Exception e) {
-            System.out.println("Connection unestablished");
+            System.out.println("Work on the connection");
         }
 
 
@@ -780,3 +779,5 @@ public class Game_user             //This is our main Parent class
         }
         return true;
     }
+
+}
