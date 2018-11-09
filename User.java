@@ -1,10 +1,13 @@
-//Importing all dependencies
+//NEW COLUMN IN USER.SQL
+//UPDATING TOTAL OF USER  AT TIME OF UPDATING
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.Connection;
@@ -13,22 +16,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import javax.swing.JOptionPane;
 
-//The main class of the game Developer
-public class User {
+public class user {
 	private static Connection Con;
 	private static Connection Con2;
 	private static Statement st;
 	public static JFrame frame1=new JFrame("Frame1");
-  public static JFrame frame = new JFrame("LOG-IN");
-  public static JPanel p;
-  public static JButton b1,b3,quitgame;
-  public static JLabel l1,l2,l3,l4,l5,l6,l7,l8,l9;
-  public static JTextField t1,t2,t3,t4,t5,t6;
-  static int as, ycard, sav, rcard, goals, pid;
+   public static JFrame frame = new JFrame("LOG-IN");
+   public static JPanel p;
+   public static JButton b1,b3,quitgame;
+   public static JLabel l1,l2,l3,l4,l5,l6,l7,l8,l9;
+   public static JTextField t1,t2,t3,t4,t5,t6;
 
-  //Builds Connection 1
+   static int as, ycard, sav, rcard, goals, pid;
 	private static void build_con()
 	{
 		try
@@ -44,7 +46,6 @@ public class User {
 		}
 	}
 	
-  //Builds Connection 2
 	private static void build_con2()
 	{
 		try
@@ -59,19 +60,20 @@ public class User {
 		System.out.print("Do not connect to DB - Error:"+e);
 		}
 	}
+	
 
-  //Create a frame for Login
-	public static void main(String[] args) {
+   public static void main(String[] args) {
 
        frame.setSize(300, 150);
        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
        JPanel panel = new JPanel();
        frame.add(panel);
        placeComponents(panel);
        frame.setVisible(true);
+
    }
 
-   //Placing all the components
    public static void placeComponents(JPanel panel) {
        panel.setLayout(null);
 
@@ -107,14 +109,13 @@ public class User {
            }
        });
    }
-
-   //Creating GUI for Update
    public static void creategui() {
        frame1 = new JFrame("Main Menu");
        frame1.setVisible(true);
        frame1.setSize(800, 800);
        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        p = new JPanel(new BorderLayout(8, 8));
+       //p.setBackground(Color.YELLOW);
        p.setBackground(Color.LIGHT_GRAY);
 
        l2=new JLabel("Player ID:");
@@ -200,14 +201,57 @@ public class User {
                rcard = Integer.parseInt(t5.getText());
                sav = Integer.parseInt(t6.getText());
                if (pid > 0 && pid <= 20 && (ycard == 1 || ycard == 0) && (rcard == 1 || rcard == 0)) {
-                   JOptionPane.showMessageDialog(p,"Updated Successfully","UPDATE",JOptionPane.PLAIN_MESSAGE);            		
-            	}     
-              else{
+                   JOptionPane.showMessageDialog(p,"Updated Successfully","UPDATE",JOptionPane.PLAIN_MESSAGE);
+/* Insert Your Code from here. Utilise the variables above */
+               	
+               //for league table to calculate total and updating
+                  
+            	    build_con();  
+            		try {
+            			int a = 4*goals - ycard - 2*rcard + 3*as + (int)sav/3;
+            			String query = "SELECT * FROM league WHERE player_id = ?";
+            		    PreparedStatement preparedStmt;
+            		    int id  = pid;
+            		    ResultSet res = null;
+            			preparedStmt = Con.prepareStatement(query);
+            			preparedStmt.setInt   (1, id);
+            			res = preparedStmt.executeQuery();
+            			res.next();
+            			goals += res.getInt("Goal");
+            			as += res.getInt("Assist");
+            			ycard += res.getInt("Yellow_Card");
+            			rcard += res.getInt("Red_Card");
+            			sav += res.getInt("Saves");
+            			int total = 4*goals - ycard - 2*rcard + 3*as + (int)sav/3;
+            	
+            			total += res.getInt("Total");
+            			query = "UPDATE league SET Goal = ? , Assist = ?, Yellow_Card = ?, Red_Card = ?,Saves = ?, Total = ?  WHERE player_id = ?";
+            			preparedStmt = Con.prepareStatement(query);
+            			preparedStmt.setInt   (1, goals);
+            			preparedStmt.setInt   (2, as);
+            			preparedStmt.setInt   (3, ycard);
+            			preparedStmt.setInt   (4, rcard);
+            			preparedStmt.setInt   (5, sav);
+            			preparedStmt.setInt   (6, total);
+            			preparedStmt.setInt   (7, pid);
+            			preparedStmt.executeUpdate();
+            			if(check(pid))
+            			{
+            				up_user(a);
+            			}
+            			Con.close();
+            		} catch (SQLException ex) {
+            			ex.printStackTrace();
+            		}
+            		
+            	}
+                   
+                   
+               else{
                    JOptionPane.showMessageDialog(p,"WRONG INPUTS!!","ERROR",JOptionPane.ERROR_MESSAGE);
                }
            }
 
-           //Update code
 		private void up_user(int a) {
 			// TODO Auto-generated method stub
 			build_con2();
