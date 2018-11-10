@@ -6,8 +6,8 @@
 >FANTASY LEAGUE is a game in which participants (game_users) assemble an imaginary team of real life footballers and score points based on those players' actual statistical performance or their perceived contribution on the field of play.	Usually players are selected from one specific division in a particular country, although there are many variations. 
 - - - -
 ## How do you score a POINT?
->Points are then gained or deducted depending on players' performances. 
->Points systems vary between games but typically, points are awarded for some or all of the following achievements:
+Points are then gained or deducted depending on players' performances. 
+Points systems vary between games but typically, points are awarded for some or all of the following achievements:
 *If the player **scores** a goal
 *If the player **assists** someone on field
 *Loses points if the player gets a **Yellow_Card**
@@ -20,9 +20,9 @@
 - [x] Java Swing class and AWT class majorly for GUI
 - - - -
 ### Contributors
--[@darshanc99].(https://github.com/darshanc99)
--[@nik9hil].(https://github.com/nik9hil)
--[@rohiiit].(https://github.com/rohiiit)
--[@Rajdoshi99].(https://github.com/Rajdoshi99)
+- [@darshanc99].(https://github.com/darshanc99)
+- [@nik9hil].(https://github.com/nik9hil)
+- [@rohiiit].(https://github.com/rohiiit)
+- [@Rajdoshi99].(https://github.com/Rajdoshi99)
 - - - -
 ***ELITE CODERS*** :alien:
