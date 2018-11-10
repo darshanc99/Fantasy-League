@@ -5,14 +5,15 @@
 ## What's a Fantasy League?
 >FANTASY LEAGUE is a game in which participants (game_users) assemble an imaginary team of real life footballers and score points based on those players' actual statistical performance or their perceived contribution on the field of play.	Usually players are selected from one specific division in a particular country, although there are many variations. 
 - - - -
-## How do you score a POINT?
+### How do you score a POINT?
 Points are then gained or deducted depending on players' performances. 
-Points systems vary between games but typically, points are awarded for some or all of the following achievements:
-*If the player **scores** a goal
-*If the player **assists** someone on field
-*Loses points if the player gets a **Yellow_Card**
-*Loses points if the player gets a **Red_Card**
-*If the player gets some **saves** for the team
+Points systems vary between games but typically, points are awarded for some or all of the following achievements:-
+
+* If the player **scores** a goal
+* If the player **assists** someone on field
+* Loses points if the player gets a **Yellow_Card**
+* Loses points if the player gets a **Red_Card**
+* If the player gets some **saves** for the team
 - - - -
 ### The tools we used
 - [x] MySQL Database
