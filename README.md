@@ -23,9 +23,9 @@ Points systems vary between games but typically, points are awarded for some or 
 - [x] Java Swing class and AWT class majorly for GUI
 - - - -
 ### Contributors
-- [@darshanc99].(https://github.com/darshanc99)
-- [@nik9hil].(https://github.com/nik9hil)
-- [@rohiiit].(https://github.com/rohiiit)
-- [@Rajdoshi99].(https://github.com/Rajdoshi99)
+- [@darshanc99](https://github.com/darshanc99)
+- [@nik9hil](https://github.com/nik9hil)
+- [@rohiiit](https://github.com/rohiiit)
+- [@Rajdoshi99](https://github.com/Rajdoshi99)
 - - - -
 ***ELITE CODERS*** :alien:
