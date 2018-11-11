@@ -26,13 +26,10 @@ Points systems vary between games but typically, points are awarded for some or 
 * Turn on XAMPP, if you don't have it installed in your PC, then check out the installations (sub-heading) as you scroll down.
 ![picture alt](https://www.wikihow.com/images/thumb/f/fb/Start-XAMPP-at-Startup-in-Windows-Step-1.jpg/aid7260791-v4-728px-Start-XAMPP-at-Startup-in-Windows-Step-1.jpg "XAMPP")
 * Set the Database in [Localhost](https://localhoast/phpmyadmin/)
-<div align="center">
-	
-<br>
-
-<img src="Pictures/start.jpg" width=700px>
-
-</div>
+* Install a Java environment, and run [Game_Player](https://github.com/darshanc99/Fantasy-League/blob/master/Code/ButtonImageExample.java)
+* Update your team through the GUI.
+* Run [Game_Developer](https://github.com/darshanc99/Fantasy-League/blob/master/Code/user.java) and update the player point tally.
+* Now you can view the points in the User Stats tally which is in [Game_User](https://github.com/darshanc99/Fantasy-League/blob/master/Code/ButtonImageExample.java)
 - - - -
 ### Contributors
 - [@darshanc99](https://github.com/darshanc99)
