@@ -24,7 +24,6 @@ Points systems vary between games but typically, points are awarded for some or 
 - - - -
 ### How do you run the code?
 * Turn on XAMPP, if you don't have it installed in your PC, then check out the installations (sub-heading) as you scroll down.
-![picture alt](https://www.wikihow.com/images/thumb/f/fb/Start-XAMPP-at-Startup-in-Windows-Step-1.jpg/aid7260791-v4-728px-Start-XAMPP-at-Startup-in-Windows-Step-1.jpg "XAMPP")
 * Set the Database in [Localhost](https://localhoast/phpmyadmin/)
 * Install a Java environment, and run [Game_Player](https://github.com/darshanc99/Fantasy-League/blob/master/Code/ButtonImageExample.java)
 * Update your team through the GUI.
@@ -32,9 +31,9 @@ Points systems vary between games but typically, points are awarded for some or 
 * Now you can view the points in the User Stats tally which is in [Game_User](https://github.com/darshanc99/Fantasy-League/blob/master/Code/ButtonImageExample.java)
 - - - -
 ### Installations required
-- [] [MySQL](https://dev.mysql.com/downloads/installer/)
-- [] [JDBC Driver](https://dev.mysql.com/downloads/connector/j/)
-- [] JAVA Environment [Eclipse](https://www.eclipse.org/downloads/) [IntelliJ](https://www.jetbrains.com/idea/download/)
+- [MySQL](https://dev.mysql.com/downloads/installer/)
+- [JDBC Driver](https://dev.mysql.com/downloads/connector/j/)
+- JAVA Environment [Eclipse](https://www.eclipse.org/downloads/) or [IntelliJ](https://www.jetbrains.com/idea/download/)
 - - - -
 ### Contributors
 - [@darshanc99](https://github.com/darshanc99)
