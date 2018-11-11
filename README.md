@@ -29,6 +29,7 @@ Points systems vary between games but typically, points are awarded for some or 
 * Update your team through the GUI.
 * Run [Game_Developer](https://github.com/darshanc99/Fantasy-League/blob/master/Code/user.java) and update the player point tally.
 * Now you can view the points in the User Stats tally which is in [Game_User](https://github.com/darshanc99/Fantasy-League/blob/master/Code/ButtonImageExample.java)
+* Also don't forget to add the [Audio](https://github.com/darshanc99/Fantasy-League/blob/master/Audio/music.mp3) and yes, convert the .mp3 file into .wav file, and set the name as ***waving.wav***
 - - - -
 ### Installations required
 - [XAMPP](https://www.apachefriends.org/download.html)
