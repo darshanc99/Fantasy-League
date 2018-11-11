@@ -31,6 +31,11 @@ Points systems vary between games but typically, points are awarded for some or 
 * Run [Game_Developer](https://github.com/darshanc99/Fantasy-League/blob/master/Code/user.java) and update the player point tally.
 * Now you can view the points in the User Stats tally which is in [Game_User](https://github.com/darshanc99/Fantasy-League/blob/master/Code/ButtonImageExample.java)
 - - - -
+### Installations required
+- [] [MySQL](https://dev.mysql.com/downloads/installer/)
+- [] [JDBC Driver](https://dev.mysql.com/downloads/connector/j/)
+- [] JAVA Environment [Eclipse](https://www.eclipse.org/downloads/) [IntelliJ](https://www.jetbrains.com/idea/download/)
+- - - -
 ### Contributors
 - [@darshanc99](https://github.com/darshanc99)
 - [@nik9hil](https://github.com/nik9hil)
